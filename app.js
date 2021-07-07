@@ -38,7 +38,7 @@ app.use(passport.session());
 app.use(express.static("public"));
 
 
-mongoose.connect("mongodb+srv://dBuser:mongo@123.lahf3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect("mongodb+srv://dBuser:mongo@123.lahf3.mongodb.net/userDB?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.set('useCreateIndex', true);
 
 
@@ -157,7 +157,7 @@ app.post("/login", function (req, res) {
         if (err) {
             console.log(err);
         } else {
-            passport.authenticate("local"),(function (req, res) {
+            passport.authenticate("local")(req, res, function () {
                 res.redirect("/secrets");
 
             });
